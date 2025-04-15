@@ -50,7 +50,37 @@ namespace calculator
     public class Calculator
     {
         // ---------- TODO ----------
-        
+        public double Calculate(double num1, string op, double num2)
+        {   
+            double result = 0.0;
+            try{
+                switch(op){
+                    case "+":
+                        result = num1 + num2;
+                        break;
+                    case "-":
+                        result = num1 - num2;
+                        break;
+                    case "*":
+                        result = num1 * num2;
+                        break;
+                    case "/":
+                        try{
+                            if(num2 == 0) throw new DivideByZeroException("Division by zero is not allowed");
+                            result = num1 / num2;
+                            break;
+                        }catch(Exception err){
+                            throw;
+                        }
+                    default:
+                        throw new InvalidOperationException("Invalid operator");
+                }    
+            }catch(Exception err){
+                throw;
+            }
+            return result;
+            
+        }
         // --------------------
     }
 }
